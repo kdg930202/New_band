@@ -1,4 +1,4 @@
-function [locate_bloch2, omega, omegal] = Band_function(nL,nR,tL,tR,OA,OB)
+function [locate_bloch2, omega] = Band_function(omegal,nL,nR,tL,tR,OA,OB)
 
 % nL = 5;
 % nR = 5;
@@ -11,11 +11,11 @@ c = 3*10^8;
 
 
 
-omegal = c/(nL/2+nR/2) * pi/(tL/2+tR/2);
+% omegal = c/(nL/2+nR/2) * pi/(tL/2+tR/2);
 % omegal = 2*pi*c/(tL*4*nL);
 
 
-% lambda_omegal = 2*pi*c/omegal;
+% lambda_omegal = 2*pi*c/omegal*10^9;
 % lambda_omegal_nm = lambda_omegal*10^9;
 %Ultraviolet 750~30,000 THz 400~10 nm
 %Visible     400~750 THZ    750~400nm

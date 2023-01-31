@@ -8,7 +8,7 @@ nR = 5;
 
 
 tL = 100*10^-9; % Fix
-tR = 100*10^-9;
+tR = 300*10^-9;
 c = 3*10^8;
 alpha = 1/137;
 
@@ -19,7 +19,7 @@ omega = (-2:dis:2)*omegal;
 bloch = (-1:dis:1)*pi;
 
 OA = 0;
-OB = 1000;
+OB = 0;
 
 gA = alpha/(c*pi)*OA - 1i*nL/c;
 gB = alpha/(c*pi)*OB - 1i*nR/c;

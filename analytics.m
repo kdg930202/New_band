@@ -1,6 +1,6 @@
 clc
 clearvars
-% close all
+close all
 
 %git hub challenge
 %please
@@ -16,18 +16,20 @@ c = 3*10^8;
 
 
 
-
-omegal = c/(nL/2+nR/2) * pi/(tL/2+tR/2);
+% % 
+% omegal = c/(nL/2+nR/2) * pi/(tL/2+tR/2);
+% omegal = 0.5*c*pi/((nL/2+nR/2)*(tL/2+tR/2));
 % omegal = 2*pi*c/(tL*4*nL);
+omegal = 2356*10^12;
+
+%%
+% lambda_omegal = 2*pi*c/omegal;
+% lambda_omegal_nm = lambda_omegal*10^9;
+% Ultraviolet 750 ~ 30,000 THz 400 ~ 10 nm
+% Visible     400 ~ 750 THZ    750 ~ 400nm
 
 
-lambda_omegal = 2*pi*c/omegal;
-lambda_omegal_nm = lambda_omegal*10^9;
-%Ultraviolet 750~30,000 THz 400~10 nm
-%Visible     400~750 THZ    750~400nm
-
-
-omegal_tera = 10^-12*omegal;
+% omegal_tera = 10^-12*omegal;
 
 dis = 0.001;
 omega = (-2:dis:2)*omegal;
@@ -43,7 +45,7 @@ dB = tR;
 
 
 OA = 0;
-OB = 1000;
+OB = 0*pi;
 
 
 alpha = 1/137;

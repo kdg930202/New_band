@@ -1,5 +1,5 @@
 clearvars
-close all
+% close all
 clc
 
 %update2
@@ -11,13 +11,19 @@ clc
 
 
 tL = 100*10^-9;
-nL = 2;
+nL = 10;
 c = 3*10^8;
-omegal =2*pi*c/(tL*4*nL);
+% omegal =4*pi*c/(tL*4*nL);
+% fre = omegal/(2*pi);
+% % % lambda = c/fre*10^9;
+lambda = 2000*10^-9;
+fre = c/lambda;
+omegal = 2*pi*fre;
 
-[locate_bloch, omega] = Band_function(omegal,nL,2,tL,100*10^-9,0,0);
-[locate_bloch_2, omega] = Band_function(omegal,nL,2,tL,100*10^-9,0,100*pi);
-[locate_bloch_3, omgea] = Band_function(omegal,nL,2,tL,100*10^-9,0,200*pi);
+
+[locate_bloch, omega] = Band_function(omegal,nL,nL,tL,tL,0,0);
+[locate_bloch_2, omega] = Band_function(omegal,nL,nL,tL,tL,0,100*pi);
+[locate_bloch_3, omgea] = Band_function(omegal,nL,nL,tL,tL,0,200*pi);
 
 
 
@@ -60,9 +66,9 @@ set(icons,'MarkerSize',20);
 %%%%%%%%%%%%%%%%%%%%%%%%%%T=1, R=2, theta_variation%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-[locate_bloch_4, omega] = Band_function(omegal, nL, 3, tL, 100*10^-9,0,0);
-[locate_bloch_5, omega] = Band_function(omegal, nL, 3, tL, 100*10^-9,0,100*pi);
-[locate_bloch_6, omega] = Band_function(omegal, nL, 3, tL,100*10^-9,0,200*pi);
+[locate_bloch_4, omega] = Band_function(omegal, nL, 1.5*nL, tL, tL,0,pi);
+[locate_bloch_5, omega] = Band_function(omegal, nL, 1.5*nL, tL, tL,0,500*pi);
+[locate_bloch_6, omega] = Band_function(omegal, nL, 1.5*nL, tL, tL,0,1000*pi);
 
 
 subplot(1,3,2)
@@ -95,10 +101,9 @@ set(icons,'MarkerSize',20);
 
 
 
-
-[locate_bloch_4, omega] = Band_function(omegal, nL, 3,100*10^-9,200*10^-9,0,0);
-[locate_bloch_5, omega] = Band_function(omegal, nL, 3,100*10^-9,200*10^-9,0,100*pi);
-[locate_bloch_6, omega] = Band_function(omegal, nL, 3,100*10^-9,200*10^-9,0,200*pi);
+[locate_bloch_4, omega] = Band_function(omegal, nL, 1.5*nL,tL,2*tL,0,0);
+[locate_bloch_5, omega] = Band_function(omegal, nL, 1.5*nL,tL,2*tL,0,100*pi);
+[locate_bloch_6, omega] = Band_function(omegal, nL, 1.5*nL,tL,2*tL,0,200*pi);
 subplot(1,3,3)
 plot(locate_bloch_4(2,:)/pi, omega/omegal, '.')
 hold on

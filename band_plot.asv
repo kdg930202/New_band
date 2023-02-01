@@ -78,7 +78,7 @@ set(gca,'FontSize',20)
 xlim([0.01,1])
 ylim([0,2])
 % Create a legend with 3 entries
-[h,icons] = legend('\theta_R = 0','\theta_R = 50\pi','\theta_R = 100\pi');
+[h,icons] = legend('\theta_R = 0','\theta_R = 100\pi','\theta_R = 200\pi');
 % Find the 'line' objects
 icons = findobj(icons,'Type','line');
 % Find lines that use a marker
@@ -116,7 +116,7 @@ set(gca,'FontSize',20)
 xlim([0.01,1])
 ylim([0,2])
 % Create a legend with 3 entries
-[h,icons] = legend('\theta_R = 0','\theta_R = 50\pi','\theta_R = 100\pi');
+[h,icons] = legend('\theta_R = 0','\theta_R = 100\pi','\theta_R = 200\pi');
 % Find the 'line' objects
 icons = findobj(icons,'Type','line');
 % Find lines that use a marker
@@ -149,7 +149,7 @@ set(gca,'FontSize',20)
 xlim([0.01,1])
 ylim([0,2])
 % Create a legend with 3 entries
-[h,icons] = legend('\theta_R = 0','\theta_R = 50\pi','\theta_R = 100\pi');
+[h,icons] = legend('\theta_R = 0','\theta_R = 100\pi','\theta_R = 200\pi');
 % Find the 'line' objects
 icons = findobj(icons,'Type','line');
 % Find lines that use a marker

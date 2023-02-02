@@ -17,39 +17,39 @@ c = 3*10^8;
 tri = 2;
 omegal =1/tri*4*pi*c/(tL*4*nL);
 % omegal =4*pi*c/(tL*4*nL);
-fre = omegal/(2*pi);
-lambda = c/fre*10^9;
+% fre = omegal/(2*pi);
+% lambda = c/fre*10^9;
 % lambda = 2000*10^-9;
 % fre = c/lambda;
 % omegal = 2*pi*fre;
 
-% [locate_bloch0, omega] = Band_function(omegal,nL,0.25*nL,tL,tL,OA,OB);
-% [locate_bloch1, omega] = Band_function(omegal,nL,0.5*nL,tL,tL,OA,OB);
-% [locate_bloch2, omega] = Band_function(omegal,nL,nL,tL,tL,OA,OB);
-% [locate_bloch3, omega] = Band_function(omegal,nL,1.5*nL,tL,tL,OA,OB);
-% % [locate_bloch4, omega] = Band_function(omegal,nL,2*nL,tL,tL,OA,OB);
-% figure()
-% % subplot(1,3,1)
-% plot(locate_bloch0(2,:)/pi, omega/omegal, '.')
-% hold on
-% plot(locate_bloch1(2,:)/pi, omega/omegal, '.')
-% plot(locate_bloch2(2,:)/pi, omega/omegal, '.')
-% plot(locate_bloch3(2,:)/pi, omega/omegal, '.')
-% % plot(locate_bloch4(2,:)/pi, omega/omegal, '.')
-% ylim([0,omega(end)/omegal])
-% % legend({'X=0.5','X=1','X=1.5'})
-% % Create a legend with 3 entries
-% [h,icons] = legend('R=0.25','R=0.5','R=1','R=1.5');
-% % [h,icons] = legend('X=0.25','X=0.5','X=1','X=1.5');
-% % Find the 'line' objects
-% icons = findobj(icons,'Type','line');
-% % Find lines that use a marker
-% icons = findobj(icons,'Marker','none','-xor');
-% % Resize the marker in the legend
-% set(icons,'MarkerSize',20);
-% xlabel('Normalized Bloch wave vector')
-% ylabel('Reduced frequency \omega/\omega_0')
-% set(gca,'FontSize',20)
+[locate_bloch0, omega] = Band_function(omegal,nL,0.25*nL,tL,tL,OA,OB);
+[locate_bloch1, omega] = Band_function(omegal,nL,0.5*nL,tL,tL,OA,OB);
+[locate_bloch2, omega] = Band_function(omegal,nL,nL,tL,tL,OA,OB);
+[locate_bloch3, omega] = Band_function(omegal,nL,1.5*nL,tL,tL,OA,OB);
+% [locate_bloch4, omega] = Band_function(omegal,nL,2*nL,tL,tL,OA,OB);
+figure()
+% subplot(1,3,1)
+plot(locate_bloch0(2,:)/pi, omega/omegal, '.')
+hold on
+plot(locate_bloch1(2,:)/pi, omega/omegal, '.')
+plot(locate_bloch2(2,:)/pi, omega/omegal, '.')
+plot(locate_bloch3(2,:)/pi, omega/omegal, '.')
+% plot(locate_bloch4(2,:)/pi, omega/omegal, '.')
+ylim([0,omega(end)/omegal])
+% legend({'X=0.5','X=1','X=1.5'})
+% Create a legend with 3 entries
+[h,icons] = legend('R=0.25','R=0.5','R=1','R=1.5');
+% [h,icons] = legend('X=0.25','X=0.5','X=1','X=1.5');
+% Find the 'line' objects
+icons = findobj(icons,'Type','line');
+% Find lines that use a marker
+icons = findobj(icons,'Marker','none','-xor');
+% Resize the marker in the legend
+set(icons,'MarkerSize',20);
+xlabel('Normalized Bloch wave vector')
+ylabel('Reduced frequency \omega/\omega_0')
+set(gca,'FontSize',20)
 
 %%
 

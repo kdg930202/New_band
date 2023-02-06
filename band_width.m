@@ -3,7 +3,7 @@
 % clc
 
 
-function result = band_width(nL,nR,tL,tR,OA,OB)
+function [result,center] = band_width(nL,nR,tL,tR,OA,OB)
 
 %update2
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -98,7 +98,7 @@ end
 
 ome_list = omega/omegal;
 result = ome_list(band_0_list(end)) - ome_list(band_0_list(1));
-% center = (band_0_list(end) - band_0_list(1))/2;
+center = (ome_list(band_0_list(end)) + ome_list(band_0_list(1)))/2;
 
 % 
 % figure()

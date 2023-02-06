@@ -17,37 +17,28 @@ R_ratio = 0.1:0.1:2;
 % result_X_1.2 = band_width(nL,nR,tL,tR,OA,OB);
 % result_X_1.3 = band_width(nL,nR,tL,tR,OA,OB);
 for i = 1:length(X_ratio)
-    [y_width_X(i),y_center_X(i)] = band_width(nL,nR,tL,X_ratio(i)*tL,OA,OB);
+    [y_width(i),y_center(i)] = band_width(nL,nR,tL,X_ratio(i)*tL,OA,OB);
 end
 
 
 
 for i = 1:length(R_ratio)
-    [y_width_R(i),y_center_R(i)] = band_width(nL,R_ratio(i)*nR,tL,tL,OA,OB);
+    [y_width_R(i),y_center(i)] = band_width(nL,R_ratio(i)*nR,tL,tL,OA,OB);
 end
 
 %%
 figure()
-subplot(2,2,1)
-scatter(X_ratio,y_width_X,'MarkerFaceColor',[0 0.4470 0.7410])
-xlabel('T_{ratio}')
-ylabel('Band width')
-set(gca,'FontSize',20)
-subplot(2,2,2)
-scatter(X_ratio,y_center_X,'*','MarkerFaceColor',[0 0.4470 0.7410])
-xlabel('T_{ratio}')
-ylabel('Band gap center')
-set(gca,'FontSize',20)
-subplot(2,2,3)
-scatter(R_ratio,y_width_R,'MarkerFaceColor',[0.9290 0.6940 0.1250])
-xlabel('R_{ratio}')
-ylabel('Band width')
-set(gca,'FontSize',20)
-subplot(2,2,4)
-scatter(R_ratio,y_center_R,'*','MarkerFaceColor',[0.9290 0.6940 0.1250])
+subplot(2,1,1)
+scatter(X_ratio,y_width,'MarkerFaceColor',[0 0.4470 0.7410])
 hold on
+scatter(X_ratio,y_width,'MarkerFaceColor',[0 0.4470 0.7410])
+xlabel('T_{ratio}')
+ylabel('Band width')
+set(gca,'FontSize',20)
+subplot(2,1,2)
+scatter(X_ratio,y_width_R,'MarkerFaceColor',[0.9290 0.6940 0.1250])
 xlabel('R_{ratio}')
-ylabel('Band gap center')
+ylabel('Band width')
 set(gca,'FontSize',20)
 
 % 

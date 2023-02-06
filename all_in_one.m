@@ -34,9 +34,9 @@ end
 
 
 nL = 10;
-nR = 10;
+nR = 1*nL;
 tL = 100*10^-9;
-tR = 100*10^-9;
+tR = tL;
 omegal = 4*pi*c/(tL*4*nL);
 % omegal = c/(nL) * pi/(tL);
 % omegal = c/(nL/2+nR/2) * pi/(tL/2+tR/2);
@@ -45,7 +45,7 @@ lambda = c/fre*10^9;
 
 
 % omegal = 2*pi*c/(tL*4*nL);
-omega = (-2:0.001:2)*omegal;
+omega = (0:0.001:2)*omegal;
 
 
 n_sub = sqrt(13);
@@ -156,8 +156,8 @@ TT4 = n_sub*TT4;
 
 figure()
 subplot(3,1,1)
-plot(omega/omegal,TT2,'LineWidth',2,'Color',"#D95319")
-ylabel('Transmission(TM->TE)')
+plot(omega/omegal,TT1,'LineWidth',2,'Color',"#D95319")
+ylabel('Reflection(TM->TM)')
 set(gca,'FontSize',20)
 title(strcat(num2str(lambda),'nm'))
 subplot(3,1,2)
@@ -212,7 +212,7 @@ set(gca,'FontSize',20)
 
 clearvars -except nL nR tL tR omegal omega theta_m
 OA = 0;
-OB = pi;
+OB = 300*pi;
 
 
 c = 3*10^8;
@@ -245,7 +245,12 @@ kR = nR*omegal/c;
 
 % figure()
 subplot(3,1,3)
-plot(omega/omegal, locate_bloch(2,:)/pi, '.')
+plot(omega/omegal, locate_bloch(2,:)/pi,'.')
+hold on
+plot(omega/omegal, locate_bloch_22(2,:)/pi,'.')
+% plot(omega/omegal, locate_bloch_22(2,:)/pi,'Color',[0 0.4470 0.7410])
+legend({'n_R = \pi','n_R = 300\pi'})
+set(gca,'FontSize',20)
 
 function MRL = interface(thetaL,thetaR,nL,nR) % interface matrix for left to right
     

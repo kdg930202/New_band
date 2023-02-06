@@ -24,7 +24,7 @@ c = 3*10^8;
 % omegal_tera = 10^-12*omegal;
 
 dis = 0.001;
-omega = (-2:dis:2)*omegal;
+omega = (0:dis:2)*omegal;
 bloch = (-1:dis:1)*pi;
 
 

@@ -1,4 +1,4 @@
-function [result,center] = band_width(locate_bloch_22,omega,omegal)
+function [result,center,band_0_list] = band_width(locate_bloch_22,omega,omegal)
 
 
 

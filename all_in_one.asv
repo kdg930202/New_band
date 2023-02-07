@@ -232,7 +232,7 @@ locate_bloch_22 = Band_function(omega, omegal,nL,nR,tL,tR,OA,OB);
 
 ome_list = omega/omegal;
 ome_u = ome_list(band_zero_22(end)) - ome_list(band_zero_0(end));
-ome_l = ome_list(band_zero_0(1)) - ome_list(band_zero_22(1));
+ome_l = ome_list(band_zero_0(1)) - ome_list(band_zero_0(1));
 
 
 

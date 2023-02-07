@@ -13,17 +13,24 @@ OB = 100*pi;
 X_ratio = 0.1:0.1:2;
 R_ratio = 0.1:0.1:2;
 
-% [y_width, y_center] = band_width(nL,nR,tL,1*tL,OA,OB);
-% result_X_1.2 = band_width(nL,nR,tL,tR,OA,OB);
-% result_X_1.3 = band_width(nL,nR,tL,tR,OA,OB);
+c = 3*10^8;
+omegal =4*pi*c/(tL*4*nL);
+omega = (0:0.001:3)*omegal;
+
+
+
+
+
 for i = 1:length(X_ratio)
-    [y_width_X(i),y_center_X(i)] = band_width(nL,nR,tL,X_ratio(i)*tL,OA,OB);
+    locate_bloch2_X = Band_function(omega,omegal,nL,nR,tL,X_ratio(i)*tL,OA,OB);
+    [y_width_X(i),y_center_X(i)] = band_width(locate_bloch2_X,omega,omegal);
 end
 
 
 
 for i = 1:length(R_ratio)
-    [y_width_R(i),y_center_R(i)] = band_width(nL,R_ratio(i)*nR,tL,tL,OA,OB);
+    locate_bloch2_R = Band_function(omega,omegal,nL,R_ratio(i)*nR,tL,tL,OA,OB);
+    [y_width_R(i),y_center_R(i)] = band_width(locate_bloch2_R,omega,omegal);
 end
 
 %%

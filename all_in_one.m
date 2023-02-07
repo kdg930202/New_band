@@ -5,7 +5,7 @@ close all
 
 p = 20;
 theta_vac = 0;
-theta_ti = 0;
+theta_ti = pi;
 
 
 c = 3*10^8;
@@ -29,14 +29,17 @@ elseif type == 4
 elseif type == 5
     theta_m = repmat([pi,-pi],1,p);
     theta_sub = 0;
+elseif type == 6
+    theta_m = repmat([0,0],1,p);
+    theta_sub = 0;    
 end
 
 
 
 nL = 10;
-nR = 1*nL;
+nR = 0.5*nL;
 tL = 100*10^-9;
-tR = tL;
+tR = 0.5*tL;
 omegal = 4*pi*c/(tL*4*nL);
 % omegal = c/(nL) * pi/(tL);
 % omegal = c/(nL/2+nR/2) * pi/(tL/2+tR/2);
@@ -45,7 +48,7 @@ lambda = c/fre*10^9;
 
 
 % omegal = 2*pi*c/(tL*4*nL);
-omega = (0:0.0001:2)*omegal;
+omega = (0:0.001:3)*omegal;
 
 
 n_sub = sqrt(13);
@@ -221,8 +224,8 @@ kL = nL*omegal/c;
 kR = nR*omegal/c;
 
 
-[locate_bloch, omega] = Band_function(omegal,nL,nR,tL,tR,OA,0);
-[locate_bloch_22, omega] = Band_function(omegal,nL,nR,tL,tR,OA,OB);
+locate_bloch = Band_function(omega, omegal,nL,nR,tL,tR,OA,0);
+locate_bloch_22 = Band_function(omega, omegal,nL,nR,tL,tR,OA,OB);
 
 % figure()
 % plot(locate_bloch(2,:)/pi, omega/omegal, '.')
@@ -249,7 +252,7 @@ plot(omega/omegal, locate_bloch(2,:)/pi,'.')
 hold on
 plot(omega/omegal, locate_bloch_22(2,:)/pi,'.')
 % plot(omega/omegal, locate_bloch_22(2,:)/pi,'Color',[0 0.4470 0.7410])
-legend({'n_R = \pi','n_R = 300\pi'})
+legend({'n_R = 0','n_R = 300\pi'})
 set(gca,'FontSize',20)
 
 function MRL = interface(thetaL,thetaR,nL,nR) % interface matrix for left to right

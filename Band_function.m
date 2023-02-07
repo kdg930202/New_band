@@ -1,4 +1,4 @@
-function [locate_bloch2, omega] = Band_function(omegal,nL,nR,tL,tR,OA,OB)
+function locate_bloch2 = Band_function(omega,omegal,nL,nR,tL,tR,OA,OB)
 
 % nL = 5;
 % nR = 5;
@@ -24,7 +24,7 @@ c = 3*10^8;
 % omegal_tera = 10^-12*omegal;
 
 dis = 0.0001;
-omega = (0:dis:2)*omegal;
+% omega = (0:dis:2)*omegal;
 bloch = (-1:dis:1)*pi;
 
 

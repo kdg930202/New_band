@@ -1,6 +1,28 @@
-function [result,center] = band_width(locate_bloch_22,omega,omegal)
+% clearvars
+% close all
+% clc
 
 
+function [result,center] = band_width(omega,omegal,nL,nR,tL,tR,OA,OB)
+
+%update2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%T=1, R=1, theta_variation%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+c = 3*10^8;
+
+
+kL = nL*omegal/c;
+kR = nR*omegal/c;
+
+
+locate_bloch = Band_function(omega,omegal,nL,nR,tL,tR,OA,0);
+locate_bloch_22 = Band_function(omega,omegal,nL,nR,tL,tR,OA,OB);
 
 
 

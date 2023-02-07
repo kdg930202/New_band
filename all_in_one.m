@@ -45,7 +45,7 @@ lambda = c/fre*10^9;
 
 
 % omegal = 2*pi*c/(tL*4*nL);
-omega = (0:0.001:2)*omegal;
+omega = (0:0.0001:2)*omegal;
 
 
 n_sub = sqrt(13);

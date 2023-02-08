@@ -13,7 +13,7 @@ clc
 tL = 100*10^-9;
 tR = 1*tL;
 nL = 10;
-nR = 1.2*nL;
+nR = 2*nL;
 OA = 0;
 OB = 100*pi;
 
@@ -22,6 +22,8 @@ OB = 100*pi;
 c = 3*10^8;
 
 omegal =4*pi*c/(tL*4*nL);
+omega = 0:0.001:10;
+omega = omega*omegal;
 % omegal = c/(nL/2+nR/2) * pi/(tL/2+tR/2);
 
 
@@ -41,8 +43,8 @@ kL = nL*omegal/c;
 kR = nR*omegal/c;
 
 
-[locate_bloch, omega] = Band_function(omegal,nL,nR,tL,tR,OA,0);
-[locate_bloch_22, omega] = Band_function(omegal,nL,nR,tL,tR,OA,OB);
+locate_bloch = Band_function(omega,omegal,nL,nR,tL,tR,OA,0);
+locate_bloch_22 = Band_function(omega,omegal,nL,nR,tL,tR,OA,OB);
 
 figure()
 plot(locate_bloch(2,:)/pi, omega/omegal, '.')

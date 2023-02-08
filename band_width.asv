@@ -1,37 +1,16 @@
-% clearvars
-% close all
-% clc
-
-
-function [result,center] = band_width(omega,omegal,nL,nR,tL,tR,OA,OB)
-
-%update2
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%T=1, R=1, theta_variation%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-c = 3*10^8;
-
-
-kL = nL*omegal/c;
-kR = nR*omegal/c;
-
-
-locate_bloch = Band_function(omega,omegal,nL,nR,tL,tR,OA,0);
-locate_bloch_22 = Band_function(omega,omegal,nL,nR,tL,tR,OA,OB);
+function [result,center] = band_width(locate_bloch_22,omega,omegal)
 
 
 
 band_gap = find(locate_bloch_22(2,:)==0);
 
-for i = 1:length(band_gap)
+
+
+for j = 1:length(band_gap)
 %     band_0_list(1) = band_gap(2);
 
     if band_gap(1) ~= 1
+        display(i+1)
         if band_gap(i+1) - band_gap(i) == 1
     %         display(i)
            band_0_list(i) = band_gap(i); 

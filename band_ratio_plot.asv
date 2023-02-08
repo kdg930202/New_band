@@ -4,8 +4,8 @@ clc
 
 
 
-x_disc = 0.3;
-X_ratio = 0.1:x_disc:2;
+
+X_ratio = 0.1:0.1:2;
 
 T_total = 100*10^-9;
 % tL = 100*10^-9;
@@ -16,35 +16,26 @@ OA = 0;
 OB = 100*pi;
 
 
-R_ratio = 0.1:x_disc:0.7;
+R_ratio = 0.1:0.1:2;
 
 c = 3*10^8;
 omegal =4*pi*c/(T_total*4*nL);
-omega = (0:0.0001:3)*omegal;
+omega = (0:0.001:3)*omegal;
 
 
 
 
 
 for i = 1:length(X_ratio)
-    display(i)
-    tL = T_total/(X_ratio(i)+1);
-    tR = T_total*X_ratio(i)/(X_ratio(i)+1);
-    locate_bloch2_X = Band_function(omega,omegal,nL,nR,tL,tR,OA,OB);
-    [y_width_X(i),y_center_X(i)] = band_width(locate_bloch2_X,omega,omegal);
+    locate_bloch2_X = Band_function(omega,omegal,nL,nR,tL,X_ratio(i)*tL,OA,OB);
+    [y_width_X(i),y_center_X(i),a] = band_width(locate_bloch2_X,omega,omegal);
 end
 
 
-figure()
+
 for i = 1:length(R_ratio)
-    display(i)
-    tL = T_total/2;
-    tR = T_total/2;
-    locate_bloch2_R = Band_function(omega,omegal,nL,R_ratio(i)*nR,tL,tR,OA,OB);
-    [y_width_R(i),y_center_R(i)] = band_width(locate_bloch2_R,omega,omegal);
-    check{i} = locate_bloch2_R;
-    plot(omega/omegal, locate_bloch2_R(2,:)/pi,'.')
-    hold on
+    locate_bloch2_R = Band_function(omega,omegal,nL,R_ratio(i)*nR,tL,tL,OA,OB);
+    [y_width_R(i),y_center_R(i),b] = band_width(locate_bloch2_R,omega,omegal);
 end
 
 %%

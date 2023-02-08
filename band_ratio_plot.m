@@ -4,7 +4,7 @@ clc
 
 
 
-x_disc = 0.3;
+x_disc = 0.1;
 X_ratio = 0.1:x_disc:2;
 
 T_total = 100*10^-9;
@@ -16,11 +16,11 @@ OA = 0;
 OB = 100*pi;
 
 
-R_ratio = 0.1:x_disc:0.7;
+R_ratio = 0.1:x_disc:2;
 
 c = 3*10^8;
 omegal =4*pi*c/(T_total*4*nL);
-omega = (0:0.0001:3)*omegal;
+omega = (0.1:0.0001:3)*omegal;
 
 
 
@@ -52,20 +52,21 @@ figure()
 subplot(2,2,1)
 scatter(X_ratio,y_width_X,'MarkerFaceColor',[0 0.4470 0.7410])
 xlabel('T_{ratio}')
-ylabel('Band width')
+ylabel('Band gap width')
 set(gca,'FontSize',20)
 subplot(2,2,2)
-scatter(X_ratio,y_center_X,'*','MarkerFaceColor',[0 0.4470 0.7410])
+scatter(X_ratio,y_center_X,'*','MarkerEdgeColor',[0 0.4470 0.7410])
 xlabel('T_{ratio}')
 ylabel('Band gap center')
+ylim([0.8,1.2])
 set(gca,'FontSize',20)
 subplot(2,2,3)
 scatter(R_ratio,y_width_R,'MarkerFaceColor',[0.9290 0.6940 0.1250])
 xlabel('R_{ratio}')
-ylabel('Band width')
+ylabel('Band gap width')
 set(gca,'FontSize',20)
 subplot(2,2,4)
-scatter(R_ratio,y_center_R,'*','MarkerFaceColor',[0.9290 0.6940 0.1250])
+scatter(R_ratio,y_center_R,'*','MarkerEdgeColor',[0.9290 0.6940 0.1250])
 hold on
 xlabel('R_{ratio}')
 ylabel('Band gap center')

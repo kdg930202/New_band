@@ -3,9 +3,9 @@ clearvars
 close all
 
 
-p = 10;
+p = 20;
 theta_vac = 0;
-theta_ti = pi;
+% theta_ti = pi;
 
 
 c = 3*10^8;
@@ -13,36 +13,32 @@ c = 3*10^8;
 
 type = 3;
 
-OB = 100*pi;
 
 
 if type == 1
     theta_m = pi*(1:1:2*p);
     theta_sub = 2*p*pi;
+    OA = theta_m(1);
+    OB = theta_m(2);
 elseif type == 2
     theta_m = pi*(1:2:(4*p-1));
     theta_sub = 4*p*pi;
+    OA = theta_m(1);
+    OB = theta_m(2);
 elseif type == 3
-    theta_m = repmat([OB,0],1,p);
-%     theta_m(end+1) = pi;
+    theta_m = repmat([0,pi],1,p);
+    theta_m(end+1) = pi;
+    OA = theta_m(1);
+    OB = theta_m(2);
     theta_sub = 0;
-elseif type == 4
-    theta_m = pi*ones(1,2*p);
-    theta_sub = 2*pi;
-elseif type == 5
-    theta_m = repmat([pi,-pi],1,p);
-    theta_sub = 0;
-elseif type == 6
-    theta_m = repmat([0,0],1,p);
-    theta_sub = 0;    
 end
 
 
 
 nL = 10;
-nR = 0.1*nL;
+nR = 0.5*nL;
 T_total = 100*10^-9;
-T_ratio = 0.5;
+T_ratio = 1;
 tL = 1/(T_ratio+1)*T_total;
 tR = T_ratio/(T_ratio+1)*T_total;
 omegal = 4*pi*c/(T_total*4*nL);
@@ -53,7 +49,7 @@ lambda = c/fre*10^9;
 
 
 % omegal = 2*pi*c/(tL*4*nL);
-omega = (0:0.001:3)*omegal;
+omega = (0:0.001:2)*omegal;
 
 
 n_sub = sqrt(13);
@@ -164,23 +160,23 @@ TT4 = n_sub*TT4;
 
 figure()
 subplot(5,1,1)
-plot(omega/omegal,TT1,'LineWidth',2,'Color',"#D95319")
-ylabel('Transmission(TM->TM)')
+plot(omega/omegal,TT1,'LineWidth',2,'Color','#0072BD')
+title('Transmission(TM->TM)')
 set(gca,'FontSize',20)
-title(strcat(num2str(lambda),'nm'))
+% title(strcat(num2str(lambda),'nm'))
 subplot(5,1,2)
-plot(omega/omegal,TT2,'LineWidth',2,'Color',"#D95319")
-ylabel('Transmission(TM->TE)')
+plot(omega/omegal,TT2,'LineWidth',2,'Color','#0072BD')
+title('Transmission(TM->TE)')
 set(gca,'FontSize',20)
-title(strcat(num2str(lambda),'nm'))
+% title(strcat(num2str(lambda),'nm'))
 subplot(5,1,3)
 plot(omega/omegal,RR1,'LineWidth',2,'Color',"#D95319")
-ylabel('Reflection(TM->TM)')
+title('Reflection(TM->TM)')
 set(gca,'FontSize',20)
-title(strcat(num2str(lambda),'nm'))
+% title(strcat(num2str(lambda),'nm'))
 subplot(5,1,4)
 plot(omega/omegal,RR2,'LineWidth',2,'Color',"#D95319")
-ylabel('Reflection(TM->TE)')
+title('Reflection(TM->TE)')
 set(gca,'FontSize',20)
 % title(strcat(num2str(lambda),'nm'))
 % xlim([0,omega(end)/omegal])
@@ -228,8 +224,8 @@ set(gca,'FontSize',20)
 % set(gca,'FontSize',30)
 
 
-clearvars -except nL nR tL tR OB omegal omega theta_m
-OA = 0;
+clearvars -except nL nR tL tR OA OB omegal omega theta_m lambda
+
 % OB = 300*pi;
 
 
@@ -242,8 +238,8 @@ kR = nR*omegal/c;
 locate_bloch = Band_function(omega, omegal,nL,nR,tL,tR,OA,0);
 locate_bloch_22 = Band_function(omega, omegal,nL,nR,tL,tR,OA,OB);
 
-[y_width_0,y_center_0] = band_width(locate_bloch,omega,omegal);
-[y_width_22,y_center_22] = band_width(locate_bloch_22,omega,omegal);
+% [y_width_0,y_center_0] = band_width(locate_bloch,omega,omegal);
+% [y_width_22,y_center_22] = band_width(locate_bloch_22,omega,omegal);
 
 
 
@@ -270,13 +266,14 @@ locate_bloch_22 = Band_function(omega, omegal,nL,nR,tL,tR,OA,OB);
 
 % figure()
 subplot(5,1,5)
-plot(omega/omegal, locate_bloch(2,:)/pi,'.')
+plot(omega/omegal, locate_bloch(2,:)/pi,'k.')
 hold on
-plot(omega/omegal, locate_bloch_22(2,:)/pi,'.')
+% plot(omega/omegal, locate_bloch_22(2,:)/pi,'.')
 % plot(omega/omegal, locate_bloch_22(2,:)/pi,'Color',[0 0.4470 0.7410])
-legend({'n_R = 0','n_R = 300\pi'})
+% legend({'n_R = 0',strcat('n_R = ', num2str(OB/pi),'\pi')})
 set(gca,'FontSize',20)
-
+title(strcat(num2str(lambda),'nm'))
+% strcat('n_R = ', num2str(OB/pi),'\pi')
 function MRL = interface(thetaL,thetaR,nL,nR) % interface matrix for left to right
     
     c = 1; %어차피 상쇄되서 divided 되니까 무슨 값 놓든 상관없음

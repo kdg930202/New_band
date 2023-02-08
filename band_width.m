@@ -10,7 +10,7 @@ for j = 1:length(band_gap)
 %     band_0_list(1) = band_gap(2);
 
     if band_gap(1) ~= 1
-        display(j+1)
+        
         if band_gap(j+1) - band_gap(j) == 1
     %         display(i)
            band_0_list(j) = band_gap(j); 

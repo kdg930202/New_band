@@ -26,8 +26,7 @@ elseif type == 2
     OA = theta_m(1);
     OB = theta_m(2);
 elseif type == 3
-    theta_m = repmat([0,pi],1,p);
-    theta_m(end+1) = pi;
+    theta_m = repmat([pi,0],1,p);
     OA = theta_m(1);
     OB = theta_m(2);
     theta_sub = 0;
@@ -157,6 +156,8 @@ TT2 = n_sub*TT2;
 TT3 = n_sub*TT3;
 TT4 = n_sub*TT4;
 
+figure()
+plot(omega/omegal,TT1+RR1+TT2+RR2,'LineWidth',2)
 
 figure()
 subplot(5,1,1)
@@ -219,7 +220,8 @@ set(gca,'FontSize',20)
 % plot(omega/omegal,RR2,'LineWidth',2)
 % set(gca,'FontSize',30)
 % subplot(1,3,3)
-% plot(omega/omegal,TT1+RR1+TT2+RR2,'LineWidth',2)
+% 
+
 % ylim([0.7,1.3])
 % set(gca,'FontSize',30)
 
@@ -274,6 +276,9 @@ hold on
 set(gca,'FontSize',20)
 title(strcat(num2str(lambda),'nm'))
 % strcat('n_R = ', num2str(OB/pi),'\pi')
+
+
+
 function MRL = interface(thetaL,thetaR,nL,nR) % interface matrix for left to right
     
     c = 1; %어차피 상쇄되서 divided 되니까 무슨 값 놓든 상관없음

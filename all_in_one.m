@@ -4,7 +4,7 @@ close all
 
 
 
-p = 10;
+p = 20;
 theta_vac = 0;
 
 
@@ -33,10 +33,10 @@ end
 %Refractice index
 nL = 10;
 nR = 0.5*nL;
-n_sub = 1;
+n_sub = sqrt(13);
 
 %Magnetic permeability
-uL = 1;
+uL = 20;
 uR = 1;
 n_mag = 1;
 

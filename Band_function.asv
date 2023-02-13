@@ -1,4 +1,4 @@
-function locate_bloch2 = Band_function(omega,omegal,nL,nR,tL,tR,OA,OB,uA,uB)
+function locate_bloch2 = Band_function(omega,omegal,nL,nR,tL,tR,OA,OB)
 
 % nL = 5;
 % nR = 5;
@@ -30,8 +30,8 @@ bloch = (-1:dis:1)*pi;
 
 nA = nL;
 nB = nR;
-ZA = uA/nA;
-ZB = uB/nB;
+ZA = 1/nA;
+ZB = 1/nB;
 dA = tL;
 dB = tR;
 
@@ -54,7 +54,7 @@ delta = alpha^2*(OA-OB)^2/(pi^2); %With this definition, it corresponds to the n
 
 %%
 % delta = 20;
-DELTA = 0.5*(ZA/ZB + ZB/ZA + delta*ZA*ZB);
+% DELTA = 0.5*(ZA/ZB + ZB/ZA + delta*ZA*ZB);
 
 LHS = cos(bloch);
 RHS = cos(kA*dA).*cos(kB*dB) - DELTA.*sin(kA*dA).*sin(kB*dB);

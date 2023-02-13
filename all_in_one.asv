@@ -1,7 +1,6 @@
 clc
 clearvars
-close all 
-
+close all
 
 
 p = 10;
@@ -17,23 +16,26 @@ type = 3;
 
 if type == 1
     theta_m = pi*(1:1:2*p);
+    theta_sub = 2*p*pi;
     OA = theta_m(1);
     OB = theta_m(2);
 elseif type == 2
     theta_m = pi*(1:2:(4*p-1));
+    theta_sub = 4*p*pi;
     OA = theta_m(1);
     OB = theta_m(2);
 elseif type == 3
     theta_m = repmat([pi,0],1,p);
     OA = theta_m(1);
     OB = theta_m(2);
+    theta_sub = 0;
 end
 
 
 %Refractice index
 nL = 10;
 nR = 0.5*nL;
-n_sub = 1;
+n_sub = sqrt(13);
 
 %Magnetic permeability
 uL = 1;
@@ -81,6 +83,8 @@ for i = 1:(length(theta_m)-1)
 end
 
 M_ti_va = interface(theta_vac,theta_m(1),1,ref(1),1,mag(1));
+% M_sub_ti = interface(theta_m(end),theta_sub,ref(end),n_sub,mag(end),n_mag);
+
 
 %%
 for i=1:length(omega)
@@ -101,8 +105,8 @@ for i=1:length(omega)
         M_total(:,:,i) = M_sub_ti * M_total(:,:,i) * M_ti_va;
     else
         M_total(:,:,i) = ML(:,:,i)* interface(theta_m(end),theta_m(end)+pi,ref(end),ref(1)) * M_total(:,:,i);
-        M_sub_ti = interface(theta_m(end)+pi,theta_m(end)+2*pi,ref(1),n_mag);
-        M_total(:,:,i) = M_sub_ti * M_total(:,:,i) * M_ti_va;
+        M_sub_ti = interface(theta_m(end)+pi,theta_m(end)+2*pi,ref(1),n_sub);
+        M_total(:,:,i) = interface(theta_m(end)+pi,theta_m(end)+2*pi,ref(1),n_sub) * M_total(:,:,i) * M_ti_va;
     end
     
     
@@ -274,6 +278,8 @@ function MRL = interface(thetaL,thetaR,nL,nR,uL,uR) % interface matrix for left 
     c = 1; %어차피 상쇄되서 divided 되니까 무슨 값 놓든 상관없음
     
     alpha = 1/137;
+%     uL = 1;
+%     uR = 1;
     u0 = 1;
     
 

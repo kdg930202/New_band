@@ -4,7 +4,7 @@ close all
 
 
 
-p = 20;
+p = 30;
 theta_vac = 0;
 
 
@@ -24,7 +24,11 @@ elseif type == 2
     OA = theta_m(1);
     OB = theta_m(2);
 elseif type == 3
-    theta_m = repmat([pi,0],1,p);
+    theta_m = repmat([1000*pi,0],1,p);
+    OA = theta_m(1);
+    OB = theta_m(2);
+elseif type == 4
+    theta_m = pi*rand(1,2*p);
     OA = theta_m(1);
     OB = theta_m(2);
 end
@@ -36,7 +40,7 @@ nR = 0.5*nL;
 n_sub = sqrt(13);
 
 %Magnetic permeability
-uL = 20;
+uL = 1;
 uR = 1;
 n_mag = 1;
 
@@ -96,7 +100,7 @@ for i=1:length(omega)
             M_total(:,:,i) = MR(:,:,i) * M_interface(:,:,2*j+1) * ML(:,:,i) * M_interface(:,:,2*j) * M_total(:,:,i);
         end
         
-    if type == 3
+    if type == 3 || type == 4
         M_sub_ti = interface(theta_m(end),0,ref(end),n_sub,mag(end),n_mag);
         M_total(:,:,i) = M_sub_ti * M_total(:,:,i) * M_ti_va;
     else

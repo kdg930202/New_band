@@ -4,11 +4,13 @@ close all
 
 
 
-p = 30;
+p = 20;
 theta_vac = 0;
 
 
 c = 3*10^8;
+
+
 
 
 type = 3;
@@ -24,7 +26,7 @@ elseif type == 2
     OA = theta_m(1);
     OB = theta_m(2);
 elseif type == 3
-    theta_m = repmat([1000*pi,0],1,p);
+    theta_m = repmat([pi,0],1,p);
     OA = theta_m(1);
     OB = theta_m(2);
 elseif type == 4
@@ -37,7 +39,7 @@ end
 %Refractice index
 nL = 10;
 nR = 0.5*nL;
-n_sub = sqrt(13);
+n_sub = 1;
 
 %Magnetic permeability
 uL = 1;

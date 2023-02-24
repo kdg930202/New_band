@@ -2,6 +2,7 @@ clc
 clearvars
 close all
 
+%
 
 p = 20;
 theta_vac = 0;
@@ -11,7 +12,7 @@ theta_ti = pi;
 c = 3*10^8;
 
 
-type = 3;
+type = 2;
 
 if type == 1
     theta_m = pi*(1:1:2*p);
@@ -25,19 +26,21 @@ elseif type == 3
     theta_m = repmat([pi,0],1,p);
     OA = theta_m(1);
     OB = theta_m(2);
-elseif type == 4
-    theta_m = pi*rand(1,2*p);
-    OA = theta_m(1);
-    OB = theta_m(2);
 end
 
 
 
 nL = 10;
 nR = 0.5*nL;
-tL = 100*10^-9;
-tR = 0.5*tL;
-omegal = 4*pi*c/(tL*4*nL);
+
+
+
+
+T_total = 100*10^-9;
+T_ratio = 1;
+tL = 1/(T_ratio+1)*T_total;
+tR = T_ratio/(T_ratio+1)*T_total;
+omegal = 4*pi*c/(T_total*4*nL);
 % omegal = c/(nL) * pi/(tL);
 % omegal = c/(nL/2+nR/2) * pi/(tL/2+tR/2);
 fre = omegal/(2*pi);
@@ -88,13 +91,14 @@ for i=1:length(omega)
         M_total(:,:,i) = MR(:,:,i) * M_interface(:,:,2*j+1) * ML(:,:,i) * M_interface(:,:,2*j) * M_total(:,:,i);
     end
         
-    if type == 3 || type == 4
-        M_sub_ti = interface(theta_m(end),0,ref(end),n_sub);
+    if type == 3
+        M_total(:,:,i) = ML(:,:,i)* interface(theta_m(end),theta_m(end)+pi,ref(end),ref(1)) * M_total(:,:,i);
+        M_sub_ti = interface(theta_m(end)+pi,0,ref(1),n_sub);
         M_total(:,:,i) = M_sub_ti * M_total(:,:,i) * M_ti_va;
     else
 %         M_total(:,:,i) = ML(:,:,i)* interface(theta_m(end),theta_m(end)+pi,ref(end),ref(1)) * M_total(:,:,i);
-%         M_sub_ti = interface(theta_m(end)+pi,theta_m(end)+2*pi,ref(1),n_mag);
-%         M_total(:,:,i) = M_sub_ti * M_total(:,:,i) * M_ti_va;
+        M_sub_ti = interface(theta_m(end),theta_m(end)+pi,ref(end),n_sub);
+        M_total(:,:,i) = M_sub_ti * M_total(:,:,i) * M_ti_va;
     end
     
     
@@ -176,6 +180,11 @@ TT4 = n_sub*TT4;
 
 
 figure()
+plot(omega/omegal,TT1+TT2+RR1+RR2,'LineWidth',2,'Color','#0072BD')
+ylim([0.9,1.1])
+
+
+figure()
 subplot(5,1,1)
 plot(omega/omegal,TT1,'LineWidth',2,'Color','#0072BD')
 title('Transmission(TM->TM)')
@@ -250,28 +259,6 @@ locate_bloch_22 = Band_function(omega, omegal,nL,nR,tL,tR,OA,OB);
 
 
 
-
-
-% figure()
-% plot(locate_bloch(2,:)/pi, omega/omegal, '.')
-% hold on
-% plot(locate_bloch_22(2,:)/pi, omega/omegal, '.')
-% ylim([0,2])
-% xlabel('Normalized Bloch wave vector')
-% ylabel('Reduced frequency \omega/\omega_0')
-% set(gca,'FontSize',20)
-% % xlim([0.01,1])
-% ylim([0,2])
-% % Create a legend with 3 entries
-% [h,icons] = legend('\theta_R = 0','\theta_R = 300\pi');
-% % Find the 'line' objects
-% icons = findobj(icons,'Type','line');
-% % Find lines that use a marker
-% icons = findobj(icons,'Marker','none','-xor');
-% % Resize the marker in the legend
-% set(icons,'MarkerSize',20);
-
-% figure()
 subplot(5,1,5)
 plot(omega/omegal, locate_bloch(2,:)/pi,'k.')
 hold on

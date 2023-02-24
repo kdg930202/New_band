@@ -6,13 +6,12 @@ close all
 
 p = 20;
 theta_vac = 0;
-theta_ti = pi;
 
 
 c = 3*10^8;
 
 
-type = 2;
+type = 3;
 
 if type == 1
     theta_m = pi*(1:1:2*p);
@@ -33,9 +32,6 @@ end
 nL = 10;
 nR = 0.5*nL;
 
-
-
-
 T_total = 100*10^-9;
 T_ratio = 1;
 tL = 1/(T_ratio+1)*T_total;
@@ -48,7 +44,7 @@ lambda = c/fre*10^9;
 
 
 % omegal = 2*pi*c/(tL*4*nL);
-omega = (0:0.001:3)*omegal;
+omega = (0:0.001:2)*omegal;
 
 
 n_sub = sqrt(13);
@@ -100,15 +96,15 @@ for i=1:length(omega)
         M_sub_ti = interface(theta_m(end),theta_m(end)+pi,ref(end),n_sub);
         M_total(:,:,i) = M_sub_ti * M_total(:,:,i) * M_ti_va;
     end
-    
+%     
     
     % 위 결과가 아래 결과와 왜 다를까아???????
     
 
 % 
 %     M_total(:,:,i) = MR(:,:,i) * M_interface(:,:,1) * ML(:,:,i);
-% 
-% 
+
+
 %     if type == 1 || type ==3
 %         if p>=2
 %             for j= 1:p-1

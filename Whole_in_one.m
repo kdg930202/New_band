@@ -11,7 +11,7 @@ theta_vac = 0;
 c = 3*10^8;
 
 
-type = 3;
+type = 1;
 
 if type == 1
     theta_m = pi*(1:1:2*p);
@@ -44,7 +44,7 @@ lambda = c/fre*10^9;
 
 
 % omegal = 2*pi*c/(tL*4*nL);
-omega = (0:0.001:2)*omegal;
+omega = (0:0.001:10)*omegal;
 
 
 n_sub = sqrt(13);
